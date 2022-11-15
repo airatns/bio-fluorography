@@ -1,0 +1,73 @@
+import csv
+import glob
+import os
+
+import cv2
+import numpy as np
+
+
+CATEGORY = ['n', 'p']
+COLOUR = ['white', 'black']
+PATTERN = r'.\**\*.png'
+THRESHOLD = 150
+
+
+def find_colour(img):
+    """Метод преобразует входящее изображение в черно-белый цвет.
+    Возвращает цвет в точке середины изображения (черный или белый).
+    Эти данные будут использованы для подтверждения, что изображение
+    попало в нужную папку.
+    """
+    image = cv2.imread(img)
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    moment = cv2.moments(gray_image)
+    X = int(moment["m10"] / moment["m00"])
+    Y = int(moment["m01"] / moment["m00"])
+    cv2.circle(gray_image, (X, Y), 5, 255, 5)
+
+    if np.any(gray_image[X, Y] < THRESHOLD):
+        return "black"
+    else:
+        return "white"
+
+
+def find_data(location):
+    """Метод возвращает данные:
+    название изображения, его категорию и комментарий.
+    """
+    file_ext = os.path.basename(location)
+    colour = find_colour(location)
+    if 'negative' in location:
+        filecat = CATEGORY[0]
+        comment = 'Ok' if colour == COLOUR[0] else '!!! check !!!'
+    elif 'positive' in location:
+        filecat = CATEGORY[1]
+        comment = 'Ok' if colour == COLOUR[1] else '!!! check !!!'
+    else:
+        folder = os.path.dirname(location)
+        raise ValueError(f'Для папки {folder} скрипт не написан')
+    filename = file_ext.split('.')[0]
+    return filename, filecat, comment
+
+
+def create_csv():
+    """Метод создает csv-файла и добавляет в него искомые данные.
+    """
+    with open('Result.csv', 'w', newline='') as csvfile:
+        field_names = ['filename', 'filecat', 'comment']
+        writer = csv.DictWriter(csvfile, fieldnames=field_names)
+        writer.writeheader()
+
+        locationList = glob.glob(PATTERN)
+        for location in locationList:
+            filename, filecat, comment = find_data(location)
+            writer.writerow({'filename': filename,
+                             'filecat': filecat,
+                             'comment': comment
+                             }
+                            )
+
+
+if __name__ == '__main__':
+    create_csv()
