@@ -52,7 +52,7 @@ def find_data(location):
 
 
 def create_csv():
-    """Метод создает csv-файла и добавляет в него искомые данные.
+    """Метод создает csv-файл и добавляет в него искомые данные.
     """
     with open('Result.csv', 'w', newline='') as csvfile:
         field_names = ['filename', 'filecat', 'comment']
