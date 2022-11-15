@@ -54,7 +54,7 @@ def find_data(location):
 def create_csv():
     """Метод создает csv-файл и добавляет в него искомые данные.
     """
-    with open('Result.csv', 'w', newline='') as csvfile:
+    with open('result.csv', 'w', newline='') as csvfile:
         field_names = ['filename', 'filecat', 'comment']
         writer = csv.DictWriter(csvfile, fieldnames=field_names)
         writer.writeheader()
