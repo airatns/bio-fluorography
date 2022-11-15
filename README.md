@@ -5,7 +5,7 @@
 <img src="https://github.com/devicons/devicon/blob/master/icons/numpy/numpy-original-wordmark.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
 <img src="https://github.com/devicons/devicon/blob/master/icons/vscode/vscode-original-wordmark.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
 
-Скрипт, который создает csv-файл, в котором рядом с каждым изображением указана его категория, по первой букве папки, в которой данное изображение находится
+Скрипт, что создает csv-файл, в котором рядом с каждым изображением указана его категория, по первой букве папки, в которой данное изображение находится
 
 >**p (positive)** - кости темного цвета \
 >**n (negative)** - кости светлого цвета
