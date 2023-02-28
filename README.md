@@ -5,44 +5,47 @@
 <img src="https://github.com/devicons/devicon/blob/master/icons/numpy/numpy-original-wordmark.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
 <img src="https://github.com/devicons/devicon/blob/master/icons/vscode/vscode-original-wordmark.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
 
-Скрипт, что создает csv-файл, в котором рядом с каждым изображением указана его категория, по первой букве папки, в которой данное изображение находится
+The script that creates a .csv file with three fields:
+* **image name**
+* **category**
+* **description**
 
->**p (positive)** - кости темного цвета \
->**n (negative)** - кости светлого цвета
+Categories:
+>**p (positive)** - dark colored bones \
+>**n (negative)** - light colored bones
 
-Также реализована дополнительная проверка, в верной ли папке расположено изображение. 
+Description:
+>**OK** - the image is in the correct folder \
+>**!!! check !!!** - additional checking is required
 
->**OK** - папка выбрана верна \
->**!!! check !!!** - требуется дополнительная проверка
+Additional verification is required in the following cases:
+* the image has very high/low brightness
+* the spine is not in the center of the image
 
-Необходимость дополнительной проверки возникает, если
 
-> изображение имеет очень высокую/низкую яркость \
-> позвоночник расположен на изображении не в центре
+## **Getting Started:**
 
-## **Как запустить скрипт:**
-
-Клонировать репозиторий и перейти в него в командной строке:
+Clone the repository:
 
 >*git clone git@github.com:airatns/bio-fluorography.git*
 
-Cоздать и активировать виртуальное окружение:
+Set up the virtual environment:
 
 >*python -m venv env* \
 >*source env/scripts/activate*
 
-Установить зависимости из файла requirements.txt:
+Install dependencies in the app using requirements.txt:
 
 >*python -m pip install --upgrade pip* \
 >*pip install -r requirements.txt*
 
-Изображения разместить в папках
+Put images in folders:
 
 >**positive** \
 >**negative**
 
-Запустить скрипт:
+Run the script:
 
 >*python script.py*
 
-Результаты в файле **result.csv**
+The results will be in the file **result.csv**
